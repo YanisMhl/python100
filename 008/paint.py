@@ -1,5 +1,7 @@
+import math 
+
 def canNumber(height, width, coverage):
-    return round((height*width)/coverage, 1) 
+    return math.ceil((height*width)/coverage) 
 
 
 h = int(input("What's the height of your wall ? "))
