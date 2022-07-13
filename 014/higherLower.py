@@ -7,6 +7,6 @@ score = 0
 print(art.logo)
 firstContender = random.choice(data)
 secondContender = random.choice(data)
-print(firstContender["name"])
+print(f"")
 print(f"Against B: {data[0]}, a, from")
 
