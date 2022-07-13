@@ -27,31 +27,47 @@ print(art.logo)
 
 #Initialize variables
 score = 0
+winning = True
 firstContender = random.choice(data)
 secondContender = random.choice(data)
+if firstContender == secondContender:
+    secondContender = random.choice(data)
 
-#Display the contenders
-print(f"Compare A: {format_data(firstContender)}")
-print(f"Against B: {format_data(secondContender)}")
 
-#Ask input from user
-answer = input("Who has more followers? Type 'A' or 'B': ")
+while winning:
+    #Display the contenders
+    print(f"Your score : {score}\n")
+    print(f"Compare A: {format_data(firstContender)}")
+    print(f"Against B: {format_data(secondContender)}")
 
-if answer == 'A':
-    if contenderFollowers(firstContender) > contenderFollowers(secondContender):
-        #he wins
-        announceWin(firstContender, secondContender)
-    else:
-        #he loses
-        announceLose(firstContender, secondContender)
-        
-elif answer == 'B':
-    if contenderFollowers(secondContender) >= contenderFollowers(firstContender):
-        #he wins
-        announceWin(secondContender, firstContender)
-    else:
-        #he loses
-        announceLose(secondContender, firstContender)
+    #Ask input from user
+    answer = input("Who has more followers? Type 'A' or 'B': ")
+
+    if answer == 'A':
+        if contenderFollowers(firstContender) > contenderFollowers(secondContender):
+            #he wins
+            announceWin(firstContender, secondContender)
+            score += 1
+        else:
+            #he loses
+            announceLose(firstContender, secondContender)
+            winning = False
+            
+    elif answer == 'B':
+        if contenderFollowers(secondContender) >= contenderFollowers(firstContender):
+            #he wins
+            announceWin(secondContender, firstContender)
+            score += 1
+        else:
+            #he loses
+            announceLose(secondContender, firstContender)
+            winning = False
+    
+    firstContender = secondContender
+    secondContender = random.choice(data)
+    if firstContender == secondContender:
+        secondContender = random.choice(data)
+    print("\n\n\n\n")
 
     
 
