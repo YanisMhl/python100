@@ -11,26 +11,14 @@ def drawShape(turt, numberOfSides, angle):
         turt.forward(100) 
         turt.right(angle)
 
+def drawAllShapes(turt):
+    for i in range(3, 11):
+        drawShape(turt, i, 360/i)
 
 
 turtle = Turtle()
+drawAllShapes(turtle)
 
-#triangle
-drawShape(turtle, 3, 120)
-#square
-drawShape(turtle, 4, 90)
-#pentagon
-drawShape(turtle, 5, 72)
-#hexagon
-drawShape(turtle, 6, 60)
-#heptagon
-drawShape(turtle, 7, 51.5)
-#octagon
-drawShape(turtle, 8, 45)
-#nonagon
-drawShape(turtle, 9, 40)
-#decagon
-drawShape(turtle, 10, 36)
 
 
 #Screen stuff
