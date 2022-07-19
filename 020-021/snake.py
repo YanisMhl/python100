@@ -1,4 +1,6 @@
 from turtle import Turtle
+
+startingPositions = [(0, 0), (-20, 0), (-40, 0)]
 SPEED = 20
 UP = 90
 DOWN = 270
@@ -12,12 +14,19 @@ class Snake:
         self.head = self.segments[0]   
         
     def createSnake(self):
-        for i in range(0, 3):
-            segment = Turtle(shape="square")
-            segment.color("white")
-            segment.penup()
-            segment.goto(i*-20, 0)
-            self.segments.append(segment)
+        for position in startingPositions:
+            self.addSegment(position)
+            
+            
+    def addSegment(self, position):
+        segment = Turtle(shape="square")
+        segment.color("white")
+        segment.penup()
+        segment.goto(position)
+        self.segments.append(segment)
+        
+    def extend(self):
+        self.addSegment(self.segments[-1].position())
         
         
     def move(self):
