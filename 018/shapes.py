@@ -5,14 +5,14 @@ colors = ["orange", "blue", "red", "green", "lime", "pink", "brown", "indigo", "
 
 def drawShape(turt, numberOfSides, angle):
     color = random.choice(colors)
-    colors.remove(color)
+    #colors.remove(color)
     turt.color(color)
     for i in range(numberOfSides):
         turt.forward(100) 
         turt.right(angle)
 
 def drawAllShapes(turt):
-    for i in range(3, 11):
+    for i in range(3, 20):
         drawShape(turt, i, 360/i)
 
 
