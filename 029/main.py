@@ -1,7 +1,15 @@
 from tkinter import *
 from tkinter import messagebox
 from os.path import exists
+from password import PasswordGenerator
+from random import randint
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
+
+def passwordGeneration():
+    p = PasswordGenerator(randint(5,7), randint(2,4), randint(2,4))
+    p.generate()
+    passwordEntry.delete(0, END)
+    passwordEntry.insert(0, p.password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
@@ -57,7 +65,7 @@ passwordEntry = Entry(width=21)
 passwordEntry.grid(column=1, row=3)
 
 #Buttons
-passwordBtn = Button(text="Generate Password")
+passwordBtn = Button(text="Generate Password", command=passwordGeneration)
 passwordBtn.grid(column=2, row=3)
 addBtn = Button(text="Add", width=36, command=addCurrentAccount)
 addBtn.grid(column=1, row=4, columnspan=2)
