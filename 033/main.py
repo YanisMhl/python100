@@ -44,15 +44,15 @@ try:
 
     # print(iss_position)
 
-    utcOffset = int(geoLocData["results"][0]["annotations"]["timezone"]["offset_string"][:3])
-    response = requests.get(f"https://api.sunrise-sunset.org/json?lat={latitude}&lng={longitude}&formatted=0")
-    response.raise_for_status()
-    data = response.json()
-    sunrise = int(data["results"]["sunrise"].split("T")[1].split(":")[0]) + utcOffset
-    sunset = int(data["results"]["sunset"].split("T")[1].split(":")[0]) + utcOffset
+    # utcOffset = int(geoLocData["results"][0]["annotations"]["timezone"]["offset_string"][:3])
+    # response = requests.get(f"https://api.sunrise-sunset.org/json?lat={latitude}&lng={longitude}&formatted=0")
+    # response.raise_for_status()
+    # data = response.json()
+    # sunrise = int(data["results"]["sunrise"].split("T")[1].split(":")[0]) + utcOffset
+    # sunset = int(data["results"]["sunset"].split("T")[1].split(":")[0]) + utcOffset
 
-    print(sunrise)
-    print(sunset)
+    # print(sunrise)
+    # print(sunset)
     
 
 except IndexError:
