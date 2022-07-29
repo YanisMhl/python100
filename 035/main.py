@@ -25,9 +25,24 @@ latitude = sum(float(x) / 60 ** n for n, x in enumerate(latitude[:-1].split('-')
 longitude = sum(float(x) / 60 ** n for n, x in enumerate(longitude[:-1].split('-'))) * (1 if 'E' in longitude[-1] else -1)
     
 print(f"{latitude}\n{longitude}") 
-weatherRequest = requests.get(f"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={weatherKey}")
+
+weatherParameters={
+    "lat": latitude,
+    "lon": longitude,
+    "appid": weatherKey,
+    "exclude": "current,minutely,daily"
+}
+
+weatherRequest = requests.get(f"https://api.openweathermap.org/data/2.5/onecall", params=weatherParameters)
 weatherRequest.raise_for_status()
 weatherData = weatherRequest.json()
-print(weatherData)    
-
+weatherSlice = weatherData["hourly"][:12]
+willRain = False
+for hourData in weatherSlice:
+    conditionCode = hourData["weather"][0]["id"]
+    if int(conditionCode) < 700:
+        willRain = True 
+        
+if willRain:
+    print("Bring an umbrella.")
     
