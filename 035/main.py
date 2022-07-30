@@ -45,4 +45,6 @@ for hourData in weatherSlice:
         
 if willRain:
     print("Bring an umbrella.")
+else:
+    print("Don't bring an umbrella.")
     
