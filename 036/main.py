@@ -1,17 +1,29 @@
 import smtplib
-import requests
+import requests #type: ignore
 import os
 
-STOCK = "TSLA"
+
+STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
-## STEP 1: Use https://www.alphavantage.co
-# When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-stockKey = os.environ.get("STOCK_API_KEY")
-stockRequest = requests.get(f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={STOCK}&apikey={stockKey}")
+STOCK_ENDPOINT ="https://www.alphavantage.co/query"
+NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
+
+STOCK_API_KEY = os.environ.get("STOCK_API_KEY")
+stock_params = {
+    "function": "TIME_SERIES_DAILY",
+    "symbol": STOCK_NAME,
+    "apikey": STOCK_API_KEY
+}
+stockRequest = requests.get(STOCK_ENDPOINT, params=stock_params)
 stockRequest.raise_for_status()
-stockData = stockRequest.json()
-print(stockData)
+
+stockData = stockRequest.json()["Time Series (Daily)"]
+stockDataList = [value for (key, value) in stockData.items()]
+yesterdayData = stockDataList[0]
+closingPrice = yesterdayData["4. close"]
+print(closingPrice)
+
 ## STEP 2: Use https://newsapi.org
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
