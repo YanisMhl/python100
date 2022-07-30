@@ -1,11 +1,10 @@
 import smtplib
-from datetime import datetime
 import requests #type: ignore 
-import sys
+import os 
 
 my_email = "pythontesting67@gmail.com"
 password = "zayikltzrvbfjoxj"
-weatherKey = "e90c96659f7f42e485daafb80a89e351"
+weatherKey = os.environ.get("OWN_API_KEY")
 city = "strasbourg"
 country = "fr"
 geoLocRequest = requests.get(f"https://api.opencagedata.com/geocode/v1/json?q={city}, {country}&key=0364e1c2b1ef40afb0e0d9ba644ff011")
@@ -28,7 +27,7 @@ latitude = sum(float(x) / 60 ** n for n, x in enumerate(latitude[:-1].split('-')
 longitude = sum(float(x) / 60 ** n for n, x in enumerate(longitude[:-1].split('-'))) * (1 if 'E' in longitude[-1] else -1)
     
 print(f"{latitude}\n{longitude}") 
-
+print(weatherKey)
 weatherParameters={
     "lat": latitude,
     "lon": longitude,
