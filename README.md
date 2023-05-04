@@ -1,3 +1,3 @@
 # python100
 
-Multiple python projects, starting easy to difficult.
+Multiple python projects
